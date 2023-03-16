@@ -16,6 +16,7 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <stdint.h>
 
 #ifndef SHA1_DIGESTSIZE
 #define SHA1_DIGESTSIZE  20
@@ -26,14 +27,14 @@
 #endif
 
 typedef struct {
-    unsigned long state[5];
-    unsigned long count[2];	/* stores the number of bits */
+    uint32_t state[5];
+    uint32_t count[2];	/* stores the number of bits */
     unsigned char buffer[SHA1_BLOCKSIZE];
 } SHA1_CTX; 
 
-void SHA1Transform(unsigned long state[5], const unsigned char buffer[SHA1_BLOCKSIZE]);
+void SHA1Transform(uint32_t state[5], const unsigned char buffer[SHA1_BLOCKSIZE]);
 void SHA1Init(SHA1_CTX *context);
-void SHA1Update(SHA1_CTX *context, const unsigned char *data, unsigned long len);
+void SHA1Update(SHA1_CTX *context, const unsigned char *data, uint32_t len);
 void SHA1Final(unsigned char digest[SHA1_DIGESTSIZE], SHA1_CTX *context);
 
 #endif /* __SHA1_H__ */

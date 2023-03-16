@@ -65,15 +65,15 @@
 /* Hashes a single 512-bit block. This is the compression function - the core of the algorithm.
 **/
 void SHA1Transform(
-                   unsigned long       state[5], 
+                   uint32_t       state[5], 
                    const unsigned char buffer[SHA1_BLOCKSIZE]
                    )
 {
-    unsigned long a, b, c, d, e;
+    uint32_t a, b, c, d, e;
 
     typedef union {
         unsigned char c[64];
-        unsigned long l[16];
+        uint32_t l[16];
     } CHAR64LONG16;
 
     /* This is for the X array  */
@@ -147,11 +147,11 @@ void SHA1Init(
 void SHA1Update(
                 SHA1_CTX*            context, 
                 const unsigned char* data, 
-                unsigned long        dataLen
+                uint32_t        dataLen
                 )
 {
-    unsigned long numByteDataProcessed; /* Number of bytes processed so far */
-    unsigned long numByteInBuffMod64;   /* Number of bytes in the buffer mod 64 */
+    uint32_t numByteDataProcessed; /* Number of bytes processed so far */
+    uint32_t numByteInBuffMod64;   /* Number of bytes in the buffer mod 64 */
     
     numByteInBuffMod64 = (context->count[0] >> 3) % 64;
 
@@ -194,7 +194,7 @@ void SHA1Final(
                SHA1_CTX*     context
                )
 {
-    unsigned long i, j;
+    uint32_t i, j;
     unsigned char numBits[8];
     
     /* Record the number of bits */
